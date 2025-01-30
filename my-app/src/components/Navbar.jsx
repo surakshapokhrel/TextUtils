@@ -3,7 +3,9 @@ import React from "react";
 export default function Navbar(props) {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav
+        className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode} `}
+      >
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
             {props.title}
@@ -39,9 +41,28 @@ export default function Navbar(props) {
                 placeholder="Search"
                 aria-label="Search"
               />
-              <button className="btn btn-outline-success" type="submit">
+              <button className="btn btn-outline-success mx-2" type="submit">
                 Search
               </button>
+              <div
+                className={`form-check form-switch mx-2 text-${
+                  props.mode === "light" ? " dark" : "light"
+                }`}
+              >
+                <input
+                  className="form-check-input"
+                  onClick={props.toggleMode}
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="flexSwitchCheckDefault"
+                >
+                  Dark
+                </label>
+              </div>
             </form>
           </div>
         </div>
@@ -49,7 +70,3 @@ export default function Navbar(props) {
     </>
   );
 }
-Navbar.defaultProps = {
-  title: "TextUtils",
-  about: "About",
-};
