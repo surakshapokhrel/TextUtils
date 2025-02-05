@@ -28,7 +28,7 @@ export default function TextForm(props) {
     setText(event.target.value);
   };
 
-  const [text, setText] = useState("Enter the text");
+  const [text, setText] = useState("");
   return (
     <>
       <div
@@ -42,7 +42,7 @@ export default function TextForm(props) {
             value={text}
             onChange={handleOnChange}
             style={{
-              backgroundColor: props.mode === "dark" ? "gray" : "white",
+              backgroundColor: props.mode === "dark" ? "#13466e" : "white",
               color: props.mode === "dark" ? "white" : "#0a0830",
             }}
             id="MyBox"
@@ -75,7 +75,13 @@ export default function TextForm(props) {
           }
           Words and {text.length}Characters{" "}
         </p>
-        <p>{0.008 * text.split(" ").length}minutes read</p>
+        <p>
+          {0.008 *
+            text.split(" ").filter((element) => {
+              return element.length != 0;
+            }).length}
+          minutes read
+        </p>
       </div>
     </>
   );
